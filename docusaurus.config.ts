@@ -17,7 +17,7 @@ const config: Config = {
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
   organizationName: "Pesquisa-Cloud-UFSCar", // Usually your GitHub org/user name.
-  projectName: "", // Usually your repo name.
+  projectName: "public-docs", // Usually your repo name.
 
   onBrokenLinks: "throw",
   onBrokenMarkdownLinks: "warn",

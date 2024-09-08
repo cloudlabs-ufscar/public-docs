@@ -40,7 +40,7 @@ def resize_images(input_dir, output_dir):
                     img = crop_to_square(img)
 
                 # Resize the image
-                resized_img = img.resize((200, 200), Image.ANTIALIAS)
+                resized_img = img.resize((200, 200))
                 # Save the processed image
                 resized_img.save(output_path)
             print(f"Processed: {image_file}")

@@ -1,0 +1,22 @@
+.imgBox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.image {
+  width: 200px;
+  height: 150px;
+  object-fit: contain;
+  background: #ffffff;
+  padding: 0.5rem;
+  border-radius: 0.64rem;
+  transition: all 500ms ease-in-out;
+}
+
+.image:hover {
+  text-decoration: none;
+  scale: 1.05;
+  box-shadow: 0.2rem 0.2rem 0.5rem #888888;
+}

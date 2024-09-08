@@ -1,0 +1,10 @@
+.group{
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.label{
+  font-weight: bold;
+}
+

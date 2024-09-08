@@ -4,8 +4,11 @@ import { themes as prismThemes } from "prism-react-renderer";
 
 const config: Config = {
   title: "Cloudlabs UFSCar",
-  tagline: "Dinosaurs are cool",
-  favicon: "img/favicon.ico",
+  tagline:
+    "Pesquisa e desenvolvimento em tecnologias para data centers utilizando virtualização",
+  // favicon: "img/favicon.ico",
+  favicon:
+    "https://magalu.cloud/wp-content/uploads/2023/12/Logo-coloridoAssets-1.jpg",
 
   // Set the production url of your site here
   // url: "https://cloudlabs.ufscar.br",
@@ -67,9 +70,9 @@ const config: Config = {
     // Replace with your project's social card
     image: "img/docusaurus-social-card.jpg",
     navbar: {
-      title: "My Site",
+      title: "Cloudlabs",
       logo: {
-        alt: "My Site Logo",
+        alt: "Cloudlabs Logo",
         src: "img/logo.svg",
       },
       items: [
@@ -77,11 +80,11 @@ const config: Config = {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
-          label: "Tutorial",
+          label: "Docs",
         },
-        { to: "/blog", label: "Blog", position: "left" },
+        // { to: "/blog", label: "Blog", position: "left" },
         {
-          href: "https://github.com/facebook/docusaurus",
+          href: "https://github.com/Pesquisa-Cloud-UFSCar",
           label: "GitHub",
           position: "right",
         },
@@ -94,25 +97,8 @@ const config: Config = {
           title: "Docs",
           items: [
             {
-              label: "Tutorial",
+              label: "Documentação",
               to: "/docs/intro",
-            },
-          ],
-        },
-        {
-          title: "Community",
-          items: [
-            {
-              label: "Stack Overflow",
-              href: "https://stackoverflow.com/questions/tagged/docusaurus",
-            },
-            {
-              label: "Discord",
-              href: "https://discordapp.com/invite/docusaurus",
-            },
-            {
-              label: "Twitter",
-              href: "https://twitter.com/docusaurus",
             },
           ],
         },
@@ -120,17 +106,13 @@ const config: Config = {
           title: "More",
           items: [
             {
-              label: "Blog",
-              to: "/blog",
-            },
-            {
               label: "GitHub",
-              href: "https://github.com/facebook/docusaurus",
+              href: "https://github.com/Pesquisa-Cloud-UFSCar",
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} DC UFSCar.`,
     },
     prism: {
       theme: prismThemes.github,

@@ -1,47 +1,41 @@
 ---
-sidebar_position: 1
+sidebar_position: 0
+sidebar_label: "Introdução"
 ---
 
-# Tutorial Intro
+# Sobre Nós
 
-Let's discover **Docusaurus in less than 5 minutes**.
+O **Grupo de Pesquisa CloudLabs**, vinculado ao Departamento de Computação da Universidade Federal de São Carlos (UFSCar), foca seus esforços na pesquisa e desenvolvimento em tecnologias para data centers utilizando virtualização.
 
-## Getting Started
+## Missão
 
-Get started by **creating a new site**.
+Nossa missão é contribuir para o avanço no conhecimento e desenvolvimento de soluções tecnológicas voltadas para a eficiência e aprimoramento de data centers, com especial ênfase em virtualização. Buscamos contribuir para a evolução desses ambientes, promovendo pesquisas e práticas que reflitam os padrões da computação moderna.
 
-Or **try Docusaurus immediately** with **[docusaurus.new](https://docusaurus.new)**.
+## Áreas de Pesquisa
 
-### What you'll need
+CloudLabs é composto por pesquisadores e estudantes dedicados a cinco vertentes de pesquisa essenciais:
 
-- [Node.js](https://nodejs.org/en/download/) version 18.0 or above:
-  - When installing Node.js, you are recommended to check all checkboxes related to dependencies.
+1. **Storage:**
+   Investe na pesquisa e no desenvolvimento de inovações que visam a aprimorar o armazenamento de dados, buscando soluções avançadas para garantir confiabilidade, escalabilidade e desempenho em ambientes de data center.
 
-## Generate a new site
+2. **SRE (Site Reliability Engineering):**
+   O objetivo deste grupo é estar na vanguarda das práticas de SRE, focando na criação de sistemas robustos, confiáveis e eficientes, assegurando a disponibilidade contínua dos serviços e aplicativos hospedados em nossos data centers.
 
-Generate a new Docusaurus site using the **classic template**.
+3. **Network:**
+   Explora fronteiras na área de redes e virtualização, desenvolvendo tecnologias e estratégias que aprimoram a conectividade, segurança e eficiência das redes em ambientes virtualizados.
 
-The classic template will automatically be added to your project after you run the command:
+4. **Infraestrutura:**
+   Busca a excelência na pesquisa em infraestrutura que envolve a criação de ambientes eficientes, escaláveis e flexíveis, fundamentais para a sustentação de operações críticas em data centers modernos.
 
-```bash
-npm init docusaurus@latest my-website classic
-```
+5. **Load Balancing:**
+   Investiga formas para explorar e aprimorar técnicas de balanceamento de carga Na distribuição de tráfego e recursos, procurando promover a utilização eficiente dos recursos disponíveis.
 
-You can type this command into Command Prompt, Powershell, Terminal, or any other integrated terminal of your code editor.
+## Foco Estratégico
 
-The command also installs all necessary dependencies you need to run Docusaurus.
+CloudLabs concentra seus esforços em pesquisas e desenvolvimentos que impulsionam a virtualização em data centers. Acreditamos que a virtualização é uma peça fundamental para a evolução e eficiência dos ambientes computacionais, contribuindo para a criação de soluções inovadoras e adaptáveis.
 
-## Start your site
+## Colaboração e Inovação
 
-Run the development server:
+Promovemos uma cultura de colaboração intensiva, explorando o intercâmbio de ideias entre pesquisadores, estudantes e profissionais do setor. Deste modo, buscamos potencializar os esforços com vistas a colaborar no avanço na área de tecnologias para data centers.
 
-```bash
-cd my-website
-npm run start
-```
-
-The `cd` command changes the directory you're working with. In order to work with your newly created Docusaurus site, you'll need to navigate the terminal there.
-
-The `npm run start` command builds your website locally and serves it through a development server, ready for you to view at http://localhost:3000/.
-
-Open `docs/intro.md` (this page) and edit some lines: the site **reloads automatically** and displays your changes.
+O Grupo de Pesquisa CloudLabs da UFSCar está comprometido em estar na vanguarda da computação em data centers, impactando positivamente o cenário acadêmico, industrial e tecnológico. Junte-se a nós enquanto exploramos novas fronteiras e moldamos o futuro da computação moderna.

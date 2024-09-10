@@ -11,8 +11,8 @@ const config: Config = {
     "https://magalu.cloud/wp-content/uploads/2023/12/Logo-coloridoAssets-1.jpg",
 
   // Set the production url of your site here
-  // url: "https://cloudlabs.ufscar.br",
-  url: "https://pesquisa-cloud-ufscar.github.io/",
+  url: "https://cloudlabs.ufscar.br",
+  // url: "https://pesquisa-cloud-ufscar.github.io/",
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: "/public-docs/",

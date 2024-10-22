@@ -19,20 +19,23 @@ contém informações sobre VMs, charms e relações que as aplicações do Open
 
 1. Baixe ou clone o repositório do projeto para o seu computador (vamos ver como vamos fazer isso ainda)
 2. Passe as pasta de deploy para o controller
-```sh
-scp -P 2002 -R ./OpenStackBundles ubuntu@stratus.dc.ufscar.br:/home/ubuntu
-```
 ## Realizando os deploys
 
 ### Bundle principal
 Com o bundle baixado, basta rodar 
 ```sh
-juju deploy ./OpenStackBundles/bundle.yaml
+juju deploy ./bundle.yaml
 ```
 Para acompanhar o status do deploy
 ```sh
-juju status
+watch -c 'juju status --color'
 ```
+```sh
+watch -c 'juju machines --color'
+```
+
+
+# Realizando deploy do OpenStack manualmente
 ### Bundle do cinder
 Ao terminar deploy do bundle realizar deploy do cinder. Para ele, precisamos de uma máquina especial
 1. No MAAS, vá na aba `LXD`, clique em nosso host do lxd e por fim `Add VM`

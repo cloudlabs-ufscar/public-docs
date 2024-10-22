@@ -5,19 +5,57 @@ sidebar_label: "Configurando a rede do cluster"
 
 # Configurando a rede do cluster
 ## Organização da rede
-O primeiro passo da implantação será estabelecer as configurações de rede do cluster. Como indicado anteriormente, existirão três redes no cluster:
-* Rede do BMC - usada pelo MAAS para gerenciar os _worker nodes_. Ela ficará na interface física `eno3` do _controller_
-* Rede externa - usada para acessar o _controller_ e também para prover IPs públicos a instâncias da cloud. Ela ficará na `eno2` do _controller_.
-* Rede de gerenciamento - usada pelo Maas, Juju, lxd e openstack para prover os serviços da cloud. Ela ficará na `eno1` do _controller_.
+O primeiro passo da implantação será estabelecer as configurações de rede do cluster. Como indicado anteriormente, existirão quatro redes no cluster:
+
+* Rede do BMC `vlan 100 (tagged)`: usada pelo MAAS para gerenciar os nós físicos via ipmi.
+* Rede do PXE `vlan 101 (tagged)`: usada pelo MAAS para gerenciar os nós físicos e fazer boot pxe.
+* Rede externa DMZ `vlan 102 (untagged)`: usada para acessar os `controllers` e também para prover IPs públicos a instâncias da cloud
+* Rede de gerenciamento `vlan 103 (tagged)`: usada pelo Maas, Juju, Lxd e OpenStack para prover os serviços da cloud.
 A rede seguirá o seguinte diagrama:
+
+* nimbus:
+  - enp3s0:
+    - dmz
+  - enp3s0:
+    - vlan 100:
+    - vlan 101:
+    - vlan 103: 
+<!---      - mgmt
+      - ip/rota: br-openstack-cirrus
+      - ip/rota: br-openstack-stratus
+--->
+
+* cirrus/c0c/c1c
+    - eno1:
+      - vlan 101 (pxe)
+    - eno2:
+      - dmz (ip estático)
+    - eno3:
+      - mgmt:
+        - br-openstack-cirrus
+
+* stratus/c0s/c1s
+    - eno1:
+      - vlan 101 (pxe)
+    - eno2:
+      - dmz (ip estático)
+    - eno3:
+      - mgmt:
+        - br-openstack-stratus
 
 ![imagem redes do cluster](/guia-implantacao/3-redes-do-cluster.png)
 
-Para subir essa rede, é preciso atribuir IPs fixos nas interfaces do _controller_ para subir um servidor DHCP (que será feito usando o MAAS posteriormente).
+Para subir essa rede, é preciso atribuir IPs fixos nas interfaces do controller e dos computes.
 
-Para a rede de management, também é necessário criar uma bridge, que será usada pelo Lxd para conectar suas VMs à rede.
+Para criar o servidor DHCP será usado o MAAS posteriormente (o dhcp da rede de pxe e bmc será provido via maas).
 
-Desta maneira, mãos à maassa.
+Para a rede de management, também é necessário criar uma bridge, que será usada pelo lxd para conectar suas VMs à rede.
+
+> A configuração que antes era manual dentro dos controllers e computes agora é feita via maas que já injeta as configurações no netplan durante o deploy
+
+Desta maneira, mãos à massa.
+
+<!---
 ## Configuração das interfaces físicas do _controller_
 Primeiramente, deve-se configurar as interfaces físicas do cluster.
 
@@ -33,46 +71,27 @@ Suponha que este seja o arquivo de configuração
 ```yaml
 network:
     ethernets:
-        eno1: {}
-        eno2:
-            addresses:
-            - {IP público do controller}
+        eno1:
+            addresses: # ip na vlan 101 - pxe
+            - 10.10.1.x/24
+            match:
+                macaddress: <mac-addr-interface>
+            mtu: 1500
             nameservers:
                 addresses:
-                - {IP do gateway da rede externa}
-                - 1.1.1.1
-                - 8.8.8.8
-            routes:
-            - to: default
-              via:  {IP do gateway da rede externa}
-        eno3: {}
+                - 10.10.1.86
+                search:
+                - maas
+            set-name: eno1
+        eno3:
+            addresses: # ip na vlan 103 - mgmt
+            - 10.10.3.x/24
+            match:
+                macaddress: <mac-addr-interface>
+            mtu: 1500
+            set-name: eno3
 ```
-A interface `eno1` receberá uma bridge, por isso permanecerá inalterada neste arquivo.
-Perceba que já existe um IP na `eno2`. Ele está sendo usado para acessar o _controller_ remotamente, deixe-o inalterado.
-
-Já para a eno3, adicione o IP da rede de BMCs.
-Deste modo, o arquivo ficará desta manera:
-```diff
-network:
-    ethernets:
-        eno1: {}
-        eno2:
-            addresses:
-            - {IP público do controller}
-            nameservers:
-                addresses:
-                - {IP do gateway da rede externa}
-                - 1.1.1.1
-                - 8.8.8.8
-            routes:
-            - to: default
-              via:  {IP do gateway da rede externa}
--       eno3: {}
-+       eno3:
-+           addresses:
-+           - {IP local da rede de BMCs}
-```
-> Em nosso cluster, convencionamos usar o IP 10.42.1.1/24 para o _controller_ na rede de BMCs
+A interface `eno3` receberá uma bridge, que se comunica entre as máquinas usando a vlan 103.
 
 Saia do arquivo (`ctrl + x` -> `Y` no Nano ou `Esc` -> `:q` no vim)
 ## Configuração das bridges do _controller_
@@ -86,7 +105,7 @@ network:
     bridges:
       br-mgmt:
         interfaces:
-        - eno1
+        - eno3
         addresses:
         - {IP do controller na rede de management}
 ```
@@ -121,7 +140,7 @@ sudo mkdir /etc/nftables.d
 
 Agora, crie um novo arquivo com o NAT da rede 10.42.1.0/24
 ```sh
-sudo /etc/nftables.d/nat_rede_mgmt.conf
+sudo vim /etc/nftables.d/nat_rede_mgmt.conf
 ```
 Adicione a seguinte tabela
 ```conf
@@ -134,7 +153,7 @@ table ip nat {
 ```
 Adicione um import dessas configurações no arquivo principal do nftables
 ```sh
-sudo /etc/nftables
+sudo vim /etc/nftables.conf
 ```
 O arquivo deve ficar desta maneira
 ```diff
@@ -191,3 +210,5 @@ sudo sysctl --system
 ```
 
 Se tudo ocorreu bem, temos nossa rede pronta e funcionando. Agora podemos continuar prosseguindo com nossas configurações do cluster
+
+--->

@@ -4,6 +4,21 @@ sidebar_label: "Realizando deploy do OpenStack"
 ---
 # Realizando deploy do OpenStack
 
+# Realizando deploy do OpenStack automático
+
+## Criando a VM para o Juju
+O JUJU precisa de uma máquina para criar os volumes das máquinas do OpenStack. Em nosso caso caso, vamos criar uma VM no LXD para este papel.
+1. Na web UI do MAAS na barra lateral entrar em LXD e depois clique no nome do projeto que criamos nos passos anteriores
+2. Na nova tela, clique em `Add VM`
+3. Coloque as seguintes configurações
+- VM name: cinder-machine (ou outro nome que indique que é VM do Cinder)
+- Cores: 4 (mínimo)
+- RAM: 6144 (mínimo)
+Agora em `Storage configuration`
+- Selecione a pool de disco criada para o cinder e o tamanho disponível na partição com aquela pool.
+Para adicionar a VM, clique em `Compose Machine`. Aguarde um momento até que o LXD crie a sua VM e ela estará pronta.
+
+
 ## Configurando os computes
 Antes de tudo, é necessário ter certeza de quais serviços o JUJU vai instalar nos computes. Em nosso deploy, 
 só instalaremos os charms "nova-compute" e "ovn-chassis" nos computes físicos. Para impedir que o JUJU instale
@@ -181,57 +196,3 @@ juju integrate ovn-chassis:certificates vault:certificates
 ```
 
 Dessa maneira, temos todos nosso serviços rodando e prontos. Precisamos somente resolver questões da vault.
-
-## Inicializando a vault
-A vault é nosso serviço de certificados. Os certificados são usados para autenticar as comunicações entre nossas aplicações.
-
-Para usar a vault, precisamos primeiro inicializá-la. Para isso, vamos entrar na VM que seu serviço está rodando
-```sh
-juju ssh vault/0
-```
-Agora vamos criar uma variável para indicar à vault onde seu serviço irá rodar. No caso, na própria máquina
-```sh
-export VAULT_ADDR=http://127.0.0.1:8200
-```
-Agora vamos criar nossas credenciais
-```sh
-vault operator init --key-shares=1 --key-threshold=1
-```
-a saída desse comando é algo como:
-```
-Unseal Key 1: LuyA...
-
-Initial Root Token: s.GhHdnG2QvRl...
-
-Vault initialized with 1 key shares and a key threshold of 1. Please securely
-distribute the key shares printed above. When the Vault is re-sealed,
-restarted, or stopped, you must supply at least 1 of these keys to unseal it
-before it can start servicing requests.
-
-Vault does not store the generated master key. Without at least 1 keys to
-reconstruct the master key, Vault will remain permanently sealed!
-
-It is possible to generate new unseal keys, provided you have a quorum of
-existing unseal keys shares. See "vault operator rekey" for more information.
-```
-Note que, assim como dito, a senha de unseal pode ser gerada novamente somente se você estiver de posse de uma.
-salve essa chave em algum muito seguro, pois, se você a perder, você nunca mais poderá _unseal_ a vault 
-
-Além disso, também temos o `Root Token`. Ele será usado para nos atenticarmos em alguns passos. Salve-o também.
-
-Agora, vamos desbloquear a vault. Vamos usar aquela unseal vault que criamos, substituindo-a em `I` 
-```sh
-vault operator unseal <I>
-```
-
-Nossa operação dentro da VM está concluída, você sair da sessão e voltar ao controller.
-Agora vamos liberar o acesso do JUJU à vault. Substitua em `I` o `Root Token` que você pegou no mesmo comando
-```sh
-juju run vault/leader authorize-charm token="I"
-```
-Por fim, vamos gerar um certificado de root
-```sh
-juju run vault/leader generate-root-ca
-```
-Agora pronto, é só esperar que todos os serviços se "acomodem". Isso pode demorar um tempo, portanto descanse, e espere. 
-> Para os ansiosos, pode-se usar o comando `watch -c juju status --collor ` 

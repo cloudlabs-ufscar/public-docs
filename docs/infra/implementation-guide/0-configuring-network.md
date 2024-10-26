@@ -49,7 +49,7 @@ Para subir essa rede, é preciso atribuir IPs fixos nas interfaces do controller
 
 Para criar o servidor DHCP será usado o MAAS posteriormente (o dhcp da rede de pxe e bmc será provido via maas).
 
-Para a rede de management, também é necessário criar uma bridge, que será usada pelo lxd para conectar suas VMs à rede.
+Para a rede de management, é necessário criar uma bridge, que será usada pelo lxd para conectar suas VMs à rede.
 
 > A configuração que antes era manual dentro dos controllers e computes agora é feita via maas que já injeta as configurações no netplan durante o deploy
 

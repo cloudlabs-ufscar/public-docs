@@ -171,6 +171,10 @@ E verifique se o serviço está funcionando
 ```sh
 sudo systemctl status nftables.service
 ```
+Para listar as regras e conferir se a regra foi aplicada
+```sh
+sudo nft list ruleset
+```
 ## Liberar forward entre as bridges
 Por último, mas não menos importante, é necessário liberar forward de pacotes no sistema. Para isso, abra o arquivo de configurações do sysctl
 ```sh

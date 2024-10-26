@@ -19,7 +19,7 @@ Address = 10.10.66.1/24
 PostUp = iptables -A FORWARD -i wg0 -j ACCEPT
 PostUp = iptables -t nat -A POSTROUTING -o eno2 -j MASQUERADE
 PostDown = iptables -D FORWARD -i wg0 -j ACCEPT
-PostDown = iptables -t nat -D POSTROUTING -o enp3s0 -j MASQUERADE
+PostDown = iptables -t nat -D POSTROUTING -o eno2 -j MASQUERADE
 ListenPort = 51820
 MTU = 1420
 ```

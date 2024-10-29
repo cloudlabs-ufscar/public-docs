@@ -20,11 +20,7 @@ Para as perguntas que aparecerem no terminal seguir os seguintes passos (default
 - _Would you like to use LXD clustering?_ \
  **default** _(no)_ (maas já possui suporte para lxd clustering)
 - _Do you want to configure a new storage pool?_ \
- **default** _(yes)_
-- _Name of the new storage pool?_ \
- **default** _(default)_
-- _Name of the storage backend to use:_ \
- **dir**
+ **default** _no_ (criaremos posteriormente)
 - _Would you like to connect to a MAAS server?_ \
  **default** _(no)_ (se conectar-se ao maas ele adicionará todas as máquinas como "new machines")
 - _Would you like to create a new local network bridge or host interface?_ \
@@ -54,11 +50,11 @@ Para as perguntas que aparecerem no terminal seguir os seguintes passos (default
     - `Name`: lxdHost (nome de sua preferência)
     - `Zone`: **default**
     - `Resource pool`: **default**
-    - `lxd address`: 10.42.0.1 (o endereço da bridge criada)
+    - `lxd address`: (o endereço da bridge criada)
     - selecione `Generate new certificate`
 6. Clique em `Next`
 7. Selecione `Add trust to lxd via cmd line` e copie o comando na caixa que aparecer até `EOF`
-9. No terminal colar o comando copiado, garantindo que será rodado com `sudo`
+8. No terminal colar o comando copiado, garantindo que será rodado com `sudo`
 ```sh
 sudo lxc config trust add - <<EOF
 
@@ -69,9 +65,21 @@ MIIE3DCCAsQCEQCGRGEb...
 EOF
 ```
 11. Prossiga clicando em `Check authentication`. Cheque se há um indicativo de `connected`.
-13. Selecionar na opção `add new project`, preencha `openstack-juju` e clique em `Save`
+13. Selecionar na opção `use existing project`, escolha o `default` e clique em `Save`
 Seu host LXD deve estar configurado no MAAS, entretanto precisamos ter certeza que ele atende nossos requisitos para lançar nossas aplicações do OpenStack
 
+## Criação das pools de storage
+Para criar as pools vamos usar o lvm e mapear a partição previamente criada
+```sh
+lxc storage create b-cinder lvm source=/dev/sda4
+```
+```sh
+lxc storage create a-openstack lvm source=/dev/sda3
+```
+
+> a pool do openstack deve ser a default pois é a que o juju vai usar na criação das VMs do OpenStack
+
+<!---
 ## Configurando o overcommit do LXD
 Por padrão, o LXD vai usar somente um limite baixo de recursos (número de cores e quantidade de memória RAM). Para resolver isso, vamos liberar mais recursos para esse host
 
@@ -80,3 +88,4 @@ Por padrão, o LXD vai usar somente um limite baixo de recursos (número de core
 14. Deslize a barra de `CPU overcommit` para 2.0 e clique em `Save changes`
 
 Desta maneira, temos certeza que o JUJU tem recursos o sufiente.
+--->

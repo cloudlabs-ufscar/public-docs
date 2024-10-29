@@ -38,7 +38,7 @@ sudo chown -R ubuntu:ubuntu ~/.local
 ```
 Com o diretório criado, podemos instalar o JUJU
 ```sh
-sudo snap install juju --channel 3.1
+sudo snap install juju --channel 3.5
 ```
 
 ## Adicionando uma cloud
@@ -52,14 +52,14 @@ nano juju-cloud.yaml
 Nosso arquivo ficará dessa maneira
   ```yaml
   clouds:
-    maas-one:
+    maas-nimbus:
       type: maas
       auth-types: [oauth1]
-      endpoint: http://10.42.0.1:5240/MAAS
+      endpoint: http://{Endereço do Controller Central}:5240/MAAS
   ```
 Agora adicione a nuvem ao JUJU 
 ```sh
-juju add-cloud --client -f juju-cloud.yaml maas-one
+juju add-cloud --client -f juju-cloud.yaml maas-nimbus
 ```
 Adicionando a cloud, vamos adicionar as credenciais desta cloud.
 
@@ -74,7 +74,7 @@ nano juju-cloud-credentials.yaml
 Nosso arquivo de configurações deve ficar assim
 ```yaml
 credentials:
-    maas-one:
+    maas-nimbus:
       anyuser:
         auth-type: oauth1
         maas-oauth: I
@@ -83,7 +83,7 @@ Cole a chave que você copiou em `I`
 
 Adicione as credencias ao JUJU
 ```sh
-juju add-credential --client -f juju-cloud-credentials.yaml maas-one
+juju add-credential --client -f juju-cloud-credentials.yaml maas-nimbus
 ```
 ## Realizando o bootstrap do Juju:
 Agora sim podemos fazer o bootstrap.
@@ -92,7 +92,7 @@ Agora sim podemos fazer o bootstrap.
 > Para sair do `tmux`, faça `ctrl + b` e depois `d`
 
 ```sh
-juju bootstrap --bootstrap-series=jammy --constraints tags=juju maas-one maas-controller
+juju bootstrap --bootstrap-series=jammy --constraints tags=juju maas-nimbus maas-controller-cirrus
 ```
 > As constraints filtram os nós do MAAS, neste caso buscando somente máquinas com a tag juju\
 > bootstrap-series define a _release serie_ do sistema operacional que vai ser instalado
@@ -102,4 +102,10 @@ Por último, precisamos adicionar o model do openstack. Para o JUJU, model é co
 aplicações implantadas em models diferentes.
 ```sh
 juju add-model --config default-series=jammy openstack
+```
+
+## Adicionando um space
+O juju sempre usa a primeira interface encontrada para fazer boot pxe e para os serviços se comunicarem. No caso das VMs criada no Controllers só há uma interface e os serviços se comunicam corretamente, mas nos computes existem várias interfaces que fazem com que o juju se confunda no deploy.
+```sh
+juju add-space cirrus {Bridge do Openstack}/24
 ```

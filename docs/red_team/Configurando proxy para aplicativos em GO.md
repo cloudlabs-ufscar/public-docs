@@ -1,9 +1,9 @@
 # Configurando proxy para CLI
 
 #### Motivação
-O objetivo é utilizar proxies como Owasp Zap, Burp Suite e Caido com aplicações escritas em Go para possibilitar interceptação de requests.
+O objetivo é utilizar proxies como Owasp Zap, Burp Suite e Caido com CLIs para possibilitar interceptação de requests.
 #### Proposta
-Aplicações escritas em Go com frequência utilizam a lib padrão http/net. Den[tro dessa lib, é possível definir a variável de ambiente HTTP_PROXY](https://pkg.go.dev/golang.org/x/net/http/httpproxy) que caso seja definida, redirecionará as requests para o endereço especificado permitindo interceptar as requests.
+Aplicações escritas em Go com frequência utilizam a lib padrão http/net. [Dentro dessa lib, é possível definir a variável de ambiente HTTP_PROXY](https://pkg.go.dev/golang.org/x/net/http/httpproxy) que caso seja definida, redirecionará as requests para o endereço especificado permitindo interceptar as requests. Vale ressaltar que essa variável também é utilizada por outras libs e aplicações (não se restringindo apenas a Go). 
 #### Passo a Passo
 Inicialmente, devemos obter o Certificate Authority, processo que depende do proxy sendo utilizado.
 ##### burpsuite

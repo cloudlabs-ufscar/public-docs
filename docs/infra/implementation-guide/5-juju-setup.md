@@ -38,7 +38,7 @@ sudo chown -R ubuntu:ubuntu ~/.local
 ```
 Com o diretório criado, podemos instalar o JUJU
 ```sh
-sudo snap install juju --channel 3.5
+sudo snap install juju --channel 3.5/stable
 ```
 
 ## Adicionando uma cloud
@@ -104,8 +104,17 @@ aplicações implantadas em models diferentes.
 juju add-model --config default-series=jammy openstack
 ```
 
-## Adicionando um space
+## Adicionando um space no juju
 O juju sempre usa a primeira interface encontrada para fazer boot pxe e para os serviços se comunicarem. No caso das VMs criada no Controllers só há uma interface e os serviços se comunicam corretamente, mas nos computes existem várias interfaces que fazem com que o juju se confunda no deploy.
 ```sh
-juju add-space cirrus {Bridge do Openstack}/24
+juju add-space cirrus <subnet-openstack>/24 
+```
+
+## Configurando daz zones e spaces no MAAS
+É preciso criar o space no dashboard do maas e associar a subnet ao space.
+```sh
+export PROFILE=<profile-name>
+sudo maas login $PROFILE http://localhost:5240/MAAS <api-key>
+sudo maas $PROFILE vlans read $FABRIC_NAME
+sudo maas $PROFILE vlan update $FABRIC_NAME $VLAN_ID space=$SPACE_NAME
 ```

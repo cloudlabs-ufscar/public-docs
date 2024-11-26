@@ -72,6 +72,7 @@ Agora no dashboard, pode-se adicionar as novas máquinas
 1. Na aba `Machines`, clique em `Add hardware` e depois em `Machine`
 2. Preencha as seguintes informações. Isso deve ser feito para os dois nós encontrados
 * `Machine name`: _worker_ (0 ou 1, depende da máquina que estiver adicionando)
+* `Mac Address`: Mac Addresses das interface da máquina (pelo menos o que será usada para pxe) 
 * `Power type`: IPMI
 * `IP Address`: IP da máquinas que encontrou
 * `Power user`: user do BMC
@@ -175,6 +176,10 @@ Para listar as regras e conferir se a regra foi aplicada
 ```sh
 sudo nft list ruleset
 ```
+```sh
+sudo sysctl --system
+```
+
 ## Liberar forward entre as bridges
 Por último, mas não menos importante, é necessário liberar forward de pacotes no sistema. Para isso, abra o arquivo de configurações do sysctl
 ```sh

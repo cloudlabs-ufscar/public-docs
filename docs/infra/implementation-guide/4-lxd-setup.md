@@ -69,9 +69,12 @@ EOF
 Seu host LXD deve estar configurado no MAAS, entretanto precisamos ter certeza que ele atende nossos requisitos para lançar nossas aplicações do OpenStack
 
 ## Criação das pools de storage
-Para criar as pools vamos usar o lvm e mapear a partição previamente criada
+Para criar as pools vamos usar o lvm e mapear a partição previamente criada, ou discos secundários:
 ```sh
-lxc storage create b-cinder lvm source=/dev/sda4
+lxc storage create b-cinder lvm source=/dev/sdb
+```
+```sh
+lxc storage create c-cinder lvm source=/dev/sdc
 ```
 ```sh
 lxc storage create a-openstack lvm source=/dev/sda3

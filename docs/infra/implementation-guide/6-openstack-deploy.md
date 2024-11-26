@@ -34,12 +34,20 @@ contém informações sobre VMs, charms e relações que as aplicações do Open
 
 1. Baixe ou clone o repositório do projeto para o seu computador (vamos ver como vamos fazer isso ainda)
 2. Passe as pasta de deploy para o controller
-## Realizando os deploys
+# Realizando os deploy
 
 ### Bundle principal
 Com o bundle baixado, basta rodar 
 ```sh
 juju deploy ./bundle.yaml
+```
+### Overlay cinder / nova compute
+```sh
+juju export-bundle > current-bundle.yaml
+```
+```sh
+juju deploy --verbose ./current-bundle.yaml --overlay bundle-overlay-cinder.yaml
+juju deploy --verbose ./current-bundle.yaml --overlay bundle-overlay-nova.yaml
 ```
 Para acompanhar o status do deploy
 ```sh

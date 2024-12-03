@@ -70,3 +70,33 @@ Agora pronto, é só esperar que todos os serviços se "acomodem". Isso pode dem
     password: {salva do passo 36.2}
     domain: admin_domain
     ```
+
+## Configuração Inicial do OpenStack:
+Após a instalação o OpenStack está sem nenhuma configuração e usuários, imagens, dominios precisam ser criados, para isso temos alguns scripts:
+
+1. Faça login no dashboard para baixar o openrc do usuário admin e depois siga como no `guia de acesso`.
+
+```sh
+source openrc
+cd Infra/scripts
+```
+
+Configura os flavours:
+```sh
+./configure-cloud-flavors.sh
+```
+
+Faz o download e cria as imagens do Ubuntu, Debian e Fedora:
+```sh
+./configure-cloud-images.sh
+```
+
+Cria usuários, projetos e domínios:
+```sh
+./configure-cloud-users.sh
+```
+
+Configura a provider network na rede pública do Departamento na faixa de ips públicos definida:
+```sh
+./configure-cloud-provider.sh
+```

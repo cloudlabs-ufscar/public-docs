@@ -91,7 +91,7 @@ Agora aba `Network`dentro das máquinas no maas, pode-se configurar as redes:
    - para atribuiçao de endereços usando dhcp (dhcp snippets pode ser usado)
    - para atribuiçao de ips escolha `Static Assign`
    - para atribuiçao de ips automaticamente `Auto Assign` (mas nesse caso não temos controle do ip q a instância vai receber)
-4. Para rede de management do openstack clique em Create Bridge e realize a mesma configuração.
+4. Para rede de management do OpenStack clique em Create Bridge e realize a mesma configuração.
 
 Faça isso para todas as redes de todas as máquinas. E após esse processo faça o deploy das máquinas.
 
@@ -99,7 +99,6 @@ Faça isso para todas as redes de todas as máquinas. E após esse processo faç
 Agora aba `Storage` dentro das máquinas no maas, pode-se configurar os discos:
 1. Na interface, crie uma partição `/` com pelo menos 200gb para o Controller
 2. Crie uma partição para o OpenStack com pelo menos 500gb para criar as máquinas com serviços do OpenStack. (deixe como unformatted)
-3. Crie uma partição para o Cinder para criar a VM do Cinder. (deixe como unformatted)
 
 # Deploy das máquinas:
 1. Na aba `Machines`, selecione as instâncias. **(Os compute nodes devem permanecer no estado Ready sem Deploy para posterior provisionamento)**
@@ -109,7 +108,7 @@ Agora aba `Storage` dentro das máquinas no maas, pode-se configurar os discos:
 1. Na aba `Controller`, clique em `Add controller`
 2. Dentro da máquina que será o controller realize o processo indicado:
 ```sh
-sudo snap install maas --channel=3.5
+sudo snap install maas --channel=3.4
 ```
 e depois
 ```sh
@@ -127,7 +126,7 @@ Primeiramente, crie um diretório a qual possa se adicionar novos arquivos de co
 sudo mkdir /etc/nftables.d
 ```
 
-Agora, crie um novo arquivo com o NAT da rede 10.42.1.0/24
+Agora, crie um novo arquivo com o NAT da rede de management
 ```sh
 sudo nano /etc/nftables.d/nat_rede_mgmt.conf
 ```
@@ -176,14 +175,11 @@ Para listar as regras e conferir se a regra foi aplicada
 ```sh
 sudo nft list ruleset
 ```
-```sh
-sudo sysctl --system
-```
 
 ## Liberar forward entre as bridges
 Por último, mas não menos importante, é necessário liberar forward de pacotes no sistema. Para isso, abra o arquivo de configurações do sysctl
 ```sh
-sudo vim /etc/sysctl.conf
+sudo nano /etc/sysctl.conf
 ```
 Adicione as seguintes linhas
 ```diff

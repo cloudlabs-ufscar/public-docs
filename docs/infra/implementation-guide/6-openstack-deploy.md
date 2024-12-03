@@ -6,14 +6,14 @@ sidebar_label: "Realizando deploy do OpenStack"
 
 # Realizando deploy do OpenStack automático
 
-## Criando a VM para o Juju
+## Criando a VM para o Cinder
 O JUJU precisa de uma máquina para criar os volumes das máquinas do OpenStack. Em nosso caso caso, vamos criar uma VM no LXD para este papel.
 1. Na web UI do MAAS na barra lateral entrar em LXD e depois clique no nome do projeto que criamos nos passos anteriores
 2. Na nova tela, clique em `Add VM`
 3. Coloque as seguintes configurações
 - VM name: cinder-machine (ou outro nome que indique que é VM do Cinder)
 - Cores: 4 (mínimo)
-- RAM: 6144 (mínimo)
+- RAM: 8192 (mínimo)
 Agora em `Storage configuration`
 - Selecione a pool de disco criada para o cinder e o tamanho disponível na partição com aquela pool.
 Para adicionar a VM, clique em `Compose Machine`. Aguarde um momento até que o LXD crie a sua VM e ela estará pronta.
@@ -25,19 +25,26 @@ só instalaremos os charms "nova-compute" e "ovn-chassis" nos computes físicos.
 qualquer outro serviço nelas, precisamos alocar as máquinas para impedir que ela faça deploy nos computes
 1. No dashboard do MAAS, vá para a aba de `Machines` e selecione nossos dois computes
 2. No botão `Actions`, clique em `Allocate`
-> Uma das principais qualidades deste deploy é justamente que o JUJU não diferencia computes físicos de VMs do LXD.
-> Entretanto, em nosso caso isso acaba sendo um problema
+> Uma das principais qualidades deste deploy é justamente que o JUJU não diferencia computes físicos de VMs do LXD. Entretanto, em nosso caso isso acaba sendo um problema.
+
+> Para que o bundle/overlay possa usar essas máquinas elas devem estar com as redes configuradas porém permanescer no estado `Ready`.
 
 ## Baixando o bundle
 Com nosso JUJU funcionando, agora podemos fazer deploy do OpenStack! Para simplificar as coisas, fizemos um bundle que 
 contém informações sobre VMs, charms e relações que as aplicações do OpenStack precisam para funcionar.
 
-1. Baixe ou clone o repositório do projeto para o seu computador (vamos ver como vamos fazer isso ainda)
-2. Passe as pasta de deploy para o controller
+```sh
+git clone git@github.com:cloudlabs-ufscar/Infra.git
+```
+
 # Realizando os deploy
 
 ### Bundle principal
-Com o bundle baixado, basta rodar 
+Com o bundle baixado, basta rodar:
+```sh
+cd Infra/scripts/juju_bundles
+```
+
 ```sh
 juju deploy ./bundle.yaml
 ```
@@ -57,7 +64,7 @@ watch -c 'juju status --color'
 watch -c 'juju machines --color'
 ```
 
-
+<!---
 # Realizando deploy do OpenStack manualmente
 ### Bundle do cinder
 Ao terminar deploy do bundle realizar deploy do cinder. Para ele, precisamos de uma máquina especial
@@ -204,3 +211,4 @@ juju integrate ovn-chassis:certificates vault:certificates
 ```
 
 Dessa maneira, temos todos nosso serviços rodando e prontos. Precisamos somente resolver questões da vault.
+--->

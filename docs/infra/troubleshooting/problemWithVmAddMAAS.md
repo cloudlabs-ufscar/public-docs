@@ -212,6 +212,55 @@ transição para a próxima etapa:
 
 Após isso, a máquina entrará no estado de ready, pronta para ser alocada pelo usuário ou pelo JUJU.
 
+## Arquivos de log
+Para acessar os arquivos de log no maas < 3.4:
+```sh
+sudo cat /var/snap/maas/common/log/maas.log
+```
+```sh
+sudo cat /var/snap/maas/common/log/regiond.log
+```
+```sh
+sudo cat /var/snap/maas/common/log/rackd.log
+```
+
+Para acessar os arquivos de log no maas 3.5:
+```sh
+journalctl -u snap.maas.pebble.service
+```
+```sh
+journalctl -u snap.maas.pebble.service --case-sensitive -g "^[0-9TZ:.-]{24} \[regiond\]"
+```
+```sh
+journalctl -u snap.maas.pebble.service --case-sensitive -g "^[0-9TZ:.-]{24} \[rackd\]"
+```
+```sh
+journalctl -u snap.maas.pebble.service --case-sensitive -g "^[0-9TZ:.-]{24} \[apiserver\]"
+```
+```sh
+journalctl -u snap.maas.pebble.service --case-sensitive -g "^[0-9TZ:.-]{24} \[http\]"
+```
+```sh
+journalctl -u snap.maas.pebble.service --case-sensitive -g "^[0-9TZ:.-]{24} \[proxy\]"
+```
+```sh
+journalctl -u snap.maas.pebble.service --case-sensitive -g "^[0-9TZ:.-]{24} \[ntp\]"
+```
+```sh
+journalctl -u snap.maas.pebble.service --case-sensitive -g "^[0-9TZ:.-]{24} \[bind9\]"
+```
+```sh
+journalctl -u snap.maas.pebble.service --case-sensitive -g "^[0-9TZ:.-]{24} \[syslog\]"
+```
+```sh
+journalctl -u snap.maas.pebble.service --case-sensitive -g "^[0-9TZ:.-]{24} \[dhcpd\]"
+```
+
+## Acessar a base de dados
+```sh
+sudo -iu postgres psql -h 127.0.0.1 -d {nome_banco} -U {nome_user}
+```
+
 ## Conclusão
 
 Estes foram os erros documentados até agora para esse problema. Caso algum erro diferente apareça, sinta-se a vontade para adicionar mais uma etapa neste troubleshooting

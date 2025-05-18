@@ -19,7 +19,7 @@ const config: Config = {
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
-  organizationName: "Pesquisa-Cloud-UFSCar", // Usually your GitHub org/user name.
+  organizationName: "cloudlabs-ufscar", // Usually your GitHub org/user name.
   projectName: "public-docs", // Usually your repo name.
 
   onBrokenLinks: "throw",
@@ -77,14 +77,21 @@ const config: Config = {
       },
       items: [
         {
-          type: "docSidebar",
+        type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
           label: "Docs",
-        },
+        }, 
+        {
+          type: "docSidebar",
+          sidebarId: "tutorialSidebar",
+          position: "left",
+          label: "Blog",
+          href: "https://blog.cloudlabs.ufscar.br/"
+        },           
         // { to: "/blog", label: "Blog", position: "left" },
         {
-          href: "https://github.com/Pesquisa-Cloud-UFSCar",
+          href: "https://github.com/cloudlabs-ufscar",
           label: "GitHub",
           position: "right",
         },
@@ -107,7 +114,7 @@ const config: Config = {
           items: [
             {
               label: "GitHub",
-              href: "https://github.com/Pesquisa-Cloud-UFSCar",
+              href: "https://github.com/cloudlabs-ufscar",
             },
           ],
         },

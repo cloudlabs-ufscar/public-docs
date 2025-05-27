@@ -33,6 +33,14 @@ const config: Config = {
     locales: ["en"],
   },
 
+  scripts: [
+      {
+        src: 'https://gc.zgo.at/count.js',
+        async: true,
+        'data-goatcounter': 'https://cloudlabs.goatcounter.com/count'
+      }
+  ],
+
   presets: [
     [
       "classic",

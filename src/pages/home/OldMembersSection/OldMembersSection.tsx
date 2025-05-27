@@ -1,35 +1,13 @@
 import SectionTitle from "@site/src/components/SectionTitle/SectionTitle";
 import React, { FunctionComponent } from "react";
 import styles from "./OldMembersSection.module.css";
-
-interface IOldMembersSectionData {
-  label: string;
-  names: string[];
-}
-
-const OldMembersSectionData: IOldMembersSectionData = {
-  label: "Membros Anteriores",
-  names: [
-    "Sara Ferreira",
-    "Daniel Kenichi Tiago Tateishi",
-    "Eric Pereira Queiroz Moreira",
-    "Gabriel Jesus Dantas",
-    "Matheus Teixeira Mattioli",
-    "Miguel Antonio de Oliveira",
-  ].sort(),
-};
+import MembersGrid from "../MembersSection/MembersGrid/MembersGrid";
+import { members } from "@site/src/data/content/member/Member";
 
 const OldMembersSectionSection: FunctionComponent = () => {
   return (
     <div className="container">
-      <SectionTitle>{OldMembersSectionData.label}</SectionTitle>
-      <div className={styles.group}>
-        {OldMembersSectionData.names.map((name, index) => (
-          <div key={index} className={styles.name}>
-            {name}
-          </div>
-        ))}
-      </div>
+      <MembersGrid members={members.oldstudents} title="Membros Anteriores" />
     </div>
   );
 };

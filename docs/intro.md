@@ -13,22 +13,22 @@ Nossa missão é contribuir para o avanço no conhecimento e desenvolvimento de 
 
 ## Áreas de Pesquisa
 
-CloudLabs é composto por pesquisadores e estudantes dedicados a cinco vertentes de pesquisa essenciais:
+O CloudLabs é composto por pesquisadores e estudantes dedicados a diversas vertentes de pesquisa organizadas em grupos de trabalho:
 
-1. **Storage:**
-   Investe na pesquisa e no desenvolvimento de inovações que visam a aprimorar o armazenamento de dados, buscando soluções avançadas para garantir confiabilidade, escalabilidade e desempenho em ambientes de data center.
+1. **Grupo de Infraestrutura e Virtualização:**
+   * **Infraestrutura:** Busca a excelência na pesquisa em infraestrutura, envolvendo a criação de ambientes eficientes, escaláveis e flexíveis, fundamentais para a sustentação de operações críticas em data centers modernos. Este grupo também foca na manutenção e aprimoramento do OpenStack, garantindo a estabilidade, compatibilidade e evolução de nossa infraestrutura de nuvem.
+   * **Incus:** Dedica-se ao estudo e implementação de tecnologias Incus, explorando suas capacidades para otimização de ambientes virtualizados e gerenciamento de contêineres.
 
-2. **SRE (Site Reliability Engineering):**
-   O objetivo deste grupo é estar na vanguarda das práticas de SRE, focando na criação de sistemas robustos, confiáveis e eficientes, assegurando a disponibilidade contínua dos serviços e aplicativos hospedados em nossos data centers.
+2. **Grupo de Otimização e Confiabilidade:**
+   * **Load Balancing:** Investiga formas para explorar e aprimorar técnicas de balanceamento de carga na distribuição de tráfego e recursos, procurando promover a utilização eficiente dos recursos disponíveis.
 
-3. **Network:**
-   Explora fronteiras na área de redes e virtualização, desenvolvendo tecnologias e estratégias que aprimoram a conectividade, segurança e eficiência das redes em ambientes virtualizados.
+3. **Grupo de Segurança:**
+   * **Segurança Interna:** Foca na pesquisa e desenvolvimento de soluções para proteger a infraestrutura do CloudLabs, garantindo a integridade, confidencialidade e disponibilidade dos nossos próprios sistemas e dados.
+   * **Segurança como Serviço (Security as a Service):** Dedica-se à investigação e criação de ofertas de segurança que podem ser fornecidas aos usuários e clientes, permitindo que eles usufruam de serviços de segurança sem a necessidade de gerenciar a infraestrutura subjacente.
 
-4. **Infraestrutura:**
-   Busca a excelência na pesquisa em infraestrutura que envolve a criação de ambientes eficientes, escaláveis e flexíveis, fundamentais para a sustentação de operações críticas em data centers modernos.
+4. **Grupo de Trabalho de Gestão Financeira e Recursos (FinOps):**
+   * **Bilhetagem:** Investiga e implementa soluções de bilhetagem e práticas de FinOps, visando a otimização de custos e a gestão eficiente dos recursos em ambientes de nuvem e data centers.
 
-5. **Load Balancing:**
-   Investiga formas para explorar e aprimorar técnicas de balanceamento de carga Na distribuição de tráfego e recursos, procurando promover a utilização eficiente dos recursos disponíveis.
 
 ## Foco Estratégico
 

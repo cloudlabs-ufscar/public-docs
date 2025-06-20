@@ -1,9 +1,3 @@
-Com certeza. Fiz a revisão completa do guia, incorporando todas as suas alterações e refinando o texto para garantir clareza e precisão técnica.
-
-O resultado é um tutorial robusto que reflete a configuração específica que você projetou: um arquivo de chaves centralizado e um procedimento claro para administrá-lo.
-
----
-
 # Guia: Configurando um Servidor SSH Seguro no Ubuntu 24.04
 
 Este guia detalha o processo de configuração de um servidor SSH para aumentar drasticamente sua segurança. O objetivo é desabilitar a autenticação por senha e utilizar exclusivamente chaves SSH.

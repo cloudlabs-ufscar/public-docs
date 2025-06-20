@@ -1,6 +1,6 @@
 # Guia: Configurando um Servidor SSH Seguro no Ubuntu 24.04
 
-Este guia detalha o processo de configuração de um servidor SSH para aumentar drasticamente sua segurança. O objetivo é desabilitar a autenticação por senha e utilizar exclusivamente chaves SSH.
+Este guia detalha o processo de configuração de um servidor SSH para aumentar drasticamente sua segurança. O objetivo é desabilitar a autenticação por senha e utilizar exclusivamente chaves SSH, com um método de gerenciamento centralizado para o administrador.
 
 Neste exemplo, estamos configurando um servidor chamado `curau` rodando **Ubuntu 24.04 Server** com o endereço IP `200.18.99.85/24`.
 
@@ -38,7 +38,7 @@ ssh-keygen -t ed25519 -C "seu_email@exemplo.com"
 
 #### 2.2. Copiando sua Chave Pública para a Área de Transferência
 
-Como vamos adicionar a chave manualmente a um arquivo central, primeiro exiba sua chave pública no terminal local para poder copiá-la.
+Como vamos adicionar a chave manualmente, primeiro exiba sua chave pública no terminal local para poder copiá-la.
 
 ```bash
 cat ~/.ssh/id_ed25519.pub
@@ -58,49 +58,60 @@ Uma vez logado, edite o arquivo de configuração principal do SSH:
 ```bash
 sudo nano /etc/ssh/sshd_config
 ```
-Faça as seguintes alterações no arquivo:
+Faça as seguintes alterações de segurança no arquivo:
 
-1.  **Centralizar o Arquivo de Chaves Autorizadas:**
-    Vamos instruir o SSH a usar um único arquivo para todas as chaves, o que melhora o controle do administrador. Encontre a linha comentada `#AuthorizedKeysFile .ssh/authorized_keys`, descomente-a e altere o caminho:
+1.  **Centralizar Arquivos de Chaves Autorizadas:**
+    Instrua o SSH a usar um diretório central para os arquivos de chaves. O token `%u` será substituído pelo nome do usuário.
     ```ini
-    # Aponta para um único arquivo de chaves para todos os usuários
-    AuthorizedKeysFile /etc/ssh/authorized_keys
+    # Aponta para um diretório central, onde cada usuário tem seu arquivo
+    AuthorizedKeysFile /etc/ssh/authorized_keys.d/%u
     ```
 
-2.  **Alterar a Porta Padrão:**
-    Encontre a linha `#Port 22` e altere-a para uma porta alta não utilizada (ex: `49155`).
-    ```ini
-    Port 49155
-    ```
-
-3.  **Desabilitar Autenticação por Senha:**
+2.  **Desabilitar Autenticação por Senha:**
     Encontre `#PasswordAuthentication yes` e mude para `no`.
     ```ini
     PasswordAuthentication no
     ```
 
-4.  **Desabilitar Login Root:**
+3.  **Desabilitar Login Root:**
     Encontre `#PermitRootLogin prohibit-password` e mude para `no`.
     ```ini
     PermitRootLogin no
     ```
 Salve o arquivo e saia (`Ctrl + X`, `Y`, `Enter`).
 
+Agora, para **alterar a porta**, usaremos o método recomendado que evita a modificação direta do arquivo principal. Crie um novo arquivo de configuração:
+```bash
+sudo nano /etc/ssh/sshd_config.d/porta.conf
+```
+Adicione **apenas** a seguinte linha a este novo arquivo:
+```ini
+Port 49155
+```
+Salve e saia. O SSH automaticamente lerá este arquivo e aplicará a configuração, sobrepondo a porta padrão.
+
 ---
 
 ### Passo 4: Criar e Popular o Arquivo de Chaves
 
-Agora, crie o arquivo `authorized_keys` e adicione sua própria chave pública (que você copiou no Passo 2.2) para não perder o acesso.
+Primeiro, crie o diretório que especificamos na configuração.
+```bash
+sudo mkdir /etc/ssh/authorized_keys.d
+```
+Agora, crie o arquivo de chaves **específico para o usuário `curau`** e adicione sua própria chave pública (que você copiou no Passo 2.2) para não perder o acesso.
 
 ```bash
 # Abre o novo arquivo com o editor nano
-sudo nano /etc/ssh/authorized_keys
+# O nome do arquivo 'curau' corresponde ao nome de usuário
+sudo nano /etc/ssh/authorized_keys.d/curau
 ```
 **Cole a sua chave pública** no editor. Salve e saia.
 
-Em seguida, defina as permissões corretas. O arquivo deve ser legível apenas pelo root para evitar adulteração.
+Em seguida, defina as permissões corretas. O diretório e o arquivo devem ser acessíveis apenas pelo root para evitar adulteração.
 ```bash
-sudo chmod 644 /etc/ssh/authorized_keys
+sudo chmod 755 /etc/ssh/authorized_keys.d
+sudo chmod 644 /etc/ssh/authorized_keys.d/curau
+sudo chown root:root /etc/ssh/authorized_keys.d/curau
 ```
 
 ---
@@ -109,6 +120,7 @@ sudo chmod 644 /etc/ssh/authorized_keys
 
 Para que todas as novas configurações entrem em vigor, reinicie o serviço SSH.
 ```bash
+sudo systemctl daemon-reload
 sudo systemctl restart ssh.service
 ```
 **Atenção:** Mantenha sua sessão atual aberta! Teste a nova configuração em um novo terminal antes de se desconectar para garantir que você não se trancou para fora do servidor.
@@ -129,7 +141,7 @@ O objetivo é:
 > *   **`nftables`:** [Documentação nftables da Arch Wiki](https://wiki.archlinux.org/title/Nftables)
 
 ---
-
+etc/ssh/authorized_keys.d/
 ### Passo 7: Testar a Nova Configuração
 
 Abra **um novo terminal** na sua máquina local e conecte-se usando a nova porta:
@@ -150,17 +162,19 @@ Com o sistema centralizado, apenas um administrador com privilégios `sudo` pode
 #### Passo 1: Faça login no servidor
 Conecte-se ao servidor `curau` com sua conta de administrador.
 
-#### Passo 2: Adicione a chave ao arquivo `authorized_keys`
-Use o comando `echo` para anexar (com `>>`) a chave pública de "joana" ao final do arquivo. É uma boa prática adicionar um comentário para identificar a chave.
+#### Passo 2: Adicione a chave ao arquivo de chaves do usuário `curau`
+Use o comando `echo` para anexar (com `>>`) a chave pública de "joana" ao final do arquivo. Como "joana" se conectará como o usuário `curau`, sua chave deve ser adicionada ao arquivo `/etc/ssh/authorized_keys.d/curau`.
 
 ```bash
 # Adiciona um comentário identificador
-echo "# Chave para a usuária joana" | sudo tee -a /etc/ssh/authorized_keys
+echo "# Chave para a usuária joana" | sudo tee -a /etc/ssh/authorized_keys.d/curau
 
 # Adiciona a chave pública de joana (cole o conteúdo da chave dela aqui)
-echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC... joana@notebook" | sudo tee -a /etc/ssh/authorized_keys
+echo "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIC... joana@notebook" | sudo tee -a /etc/ssh/authorized_keys.d/curau
 ```
 > **Nota:** O uso de `tee -a` com `sudo` é uma forma robusta de anexar conteúdo a um arquivo protegido. **Nunca use `>` sozinho**, pois isso irá apagar todas as chaves existentes!
+
+Existe também a possibilidade da Joana criar seu proprio usuário no servidor com as permissões que desejar, juntamente com um arquivo `joana` em `/etc/ssh/authorized_keys.d/`. Com isso ela pode logar com seu usuário joana sem maiores problemas
 
 #### Passo 3: Verificação
 **Nenhuma reinicialização do serviço SSH é necessária.** Assim que a chave é adicionada ao arquivo, "joana" pode imediatamente tentar fazer login no servidor com o usuário `curau`, usando a chave privada dela.

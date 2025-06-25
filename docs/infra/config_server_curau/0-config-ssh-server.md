@@ -1,3 +1,9 @@
+---
+sidebar_position: 0
+sidebar_label: "Configurando um Servidor SSH Seguro"
+---
+
+
 # Guia: Configurando um Servidor SSH Seguro no Ubuntu 24.04
 
 Este guia detalha o processo de configuração de um servidor SSH para aumentar drasticamente sua segurança. O objetivo é desabilitar a autenticação por senha e utilizar exclusivamente chaves SSH, com um método de gerenciamento centralizado para o administrador.

@@ -6,7 +6,7 @@ This website is built using [Docusaurus](https://docusaurus.io/), a modern stati
 
 Hot reload is enabled
 ```sh
-docker-compose up --build
+docker compose up --build
 ```
 
 ## Deploy

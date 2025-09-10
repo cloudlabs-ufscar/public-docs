@@ -4,7 +4,7 @@ sidebar_label: "Configurando um Servidor dhcp"
 ---
 
 
-### **Tutorial Definitivo: Configurando `curau` como Servidor DHCP Kea para as `pamonhas`**
+### **Configurando `curau` como Servidor DHCP Kea para as `pamonhas`**
 
 **Objetivo:** O servidor `curau` irá fornecer IPs na rede `192.168.35.0/24`. As `pamonhas` 1, 2 e 3 receberão IPs fixos (reservados por MAC address) e qualquer outro dispositivo receberá um IP de uma faixa dinâmica.
 

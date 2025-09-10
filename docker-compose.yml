@@ -4,7 +4,18 @@ services:
   docusaurus:
     build: .
     ports:
-      - 3000:3000
-      - 35729:35729
+      - "3000:3000"
+      - "35729:35729"
+    environment:
+      - HOST=0.0.0.0
+      - CHOKIDAR_USEPOLLING=1
+      - WATCHPACK_POLLING=true
     volumes:
-      - ./:/web/
+      - ./:/web
+      # Mantém as dependências da imagem, sem serem sobrescritas pelo bind mount
+      - docusaurus_node_modules:/web/node_modules
+    tty: true
+    stdin_open: true
+
+volumes:
+  docusaurus_node_modules:

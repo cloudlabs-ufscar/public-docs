@@ -4,7 +4,21 @@ services:
   docusaurus:
     build: .
     ports:
-      - 3000:3000
-      - 35729:35729
+      - "3000:3000"
+      # Docusaurus usa 3000; 35729 não é necessário. Deixe só se outro watcher usar.
+      # - "35729:35729"
+    environment:
+      - HOST=0.0.0.0
+      - CHOKIDAR_USEPOLLING=1
+      - WATCHPACK_POLLING=true
     volumes:
-      - ./:/web/
+      - ./:/web
+      # Mantém as dependências da imagem, sem serem sobrescritas pelo bind mount
+      - docusaurus_node_modules:/web/node_modules
+    # Se quiser forçar o comando aqui (independente do Dockerfile), descomente:
+    # command: ["npm", "run", "start", "--", "--host", "0.0.0.0"]
+    tty: true
+    stdin_open: true
+
+volumes:
+  docusaurus_node_modules:

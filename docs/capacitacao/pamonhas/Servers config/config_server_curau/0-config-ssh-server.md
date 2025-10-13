@@ -1,6 +1,6 @@
 ---
 sidebar_position: 0
-sidebar_label: "Configurando um Servidor SSH Seguro"
+sidebar_label: Configurando um Servidor SSH Seguro
 ---
 
 

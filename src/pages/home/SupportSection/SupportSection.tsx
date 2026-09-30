@@ -10,7 +10,7 @@ const SupportList = [
   },
   {
     src: "img/logoluizalabs.png",
-    link: "https://www.linkedin.com/company/luizalabs/",
+    link: "https://www.linkedin.com/company/magalucloud/",
   },
 ];
 

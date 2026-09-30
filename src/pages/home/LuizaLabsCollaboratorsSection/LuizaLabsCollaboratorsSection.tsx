@@ -45,7 +45,7 @@ const LuizaLabsCollaboratorsData: ILuizaLabsCollaboratorsData[] = [
 const LuizaLabsCollaboratorsSection: FunctionComponent = () => {
   return (
     <div className="container">
-      <SectionTitle>LuizaLabs</SectionTitle>
+      <SectionTitle>Magalu Cloud</SectionTitle>
       {LuizaLabsCollaboratorsData.map(({ label, names }, index) => (
         <div className={styles.group} key={index}>
           <div className={styles.label}>{label}:</div>

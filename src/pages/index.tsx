@@ -34,7 +34,7 @@ function HomepageHeader() {
 
 export default function Home(): JSX.Element {
   return (
-    <Layout description="Grupo de pesquisa do Departamento de Computação da UFSCar, dedicado à pesquisa e ao desenvolvimento em tecnologias para data centers, com foco em soluções em virtualização. Conheça nossos projetos e avanços tecnológicos para eficiência e segurança em ambientes de data centers.">
+    <Layout description="Grupo de pesquisa do Departamento de Computação da UFSCar, dedicado à pesquisa e ao desenvolvimento em tecnologias para data centers, com foco em soluções em virtualização. Conheça nossos projetos e avanços tecnológicos para eficiência e segurança em ambientes de servidores.">
       <HomepageHeader />
       <main className={styles.container}>
         <PresentationSection />

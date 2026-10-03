@@ -118,12 +118,6 @@ export const oldstudents: IMember[] = [
   },
   {
     ...constantElements,
-    src: constantElements.src + "arthursilverio.jpeg",
-    name: "Arthur Eugenio Silverio",
-    link: "https://github.com/arthunix",
-  },
-  {
-    ...constantElements,
     name: "Vinicius Marques Rodrigues",
     link: "https://www.linkedin.com/in/vinicius-rodrigues-432784105/",
     src: constantElements.src + "viniciusrodrigues.jpeg",
@@ -145,11 +139,5 @@ export const oldstudents: IMember[] = [
     src: null,
     name: "Laura Mota Brentano",
     link: "https://www.linkedin.com/in/laura-mota-brentano-5831b6275/",
-  },
-  {
-    ...constantElements,
-    src: constantElements.src + "danilosilva.jpeg",
-    name: "Danilo da Silva Pinto",
-    link: "https://www.linkedin.com/in/danilosp1/",
   },
 ].sort(sortMembers);

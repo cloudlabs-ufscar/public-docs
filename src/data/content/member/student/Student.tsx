@@ -50,4 +50,34 @@ export const students: IMember[] = [
     name: "Danilo da Silva Pinto",
     link: "https://www.linkedin.com/in/danilosp1/",
   },
+  {
+    ...constantElements,
+    src: constantElements.src + "",
+    name: "Eduardo Pereira Filho",
+    link: "https://www.linkedin.com/in/eduardo-pereira-filho-2397671b8/",
+  },
+  {
+    ...constantElements,
+    src: constantElements.src + "",
+    name: "Nicolas Queiroz Bertozzo",
+    link: "https://www.linkedin.com/in/nqber/",
+  },
+  {
+    ...constantElements,
+    src: constantElements.src + "",
+    name: "Murilo Miranda",
+    link: "https://www.linkedin.com/in/murilo-miranda-7b0614269/",
+  },
+  {
+    ...constantElements,
+    src: constantElements.src + "",
+    name: "Murilo Miranda",
+    link: "https://www.linkedin.com/in/murilo-miranda-7b0614269/",
+  },
+  {
+    ...constantElements,
+    src: constantElements.src + "",
+    name: "Gabrielly Maria",
+    link: "",
+  },
 ].sort(sortMembers);

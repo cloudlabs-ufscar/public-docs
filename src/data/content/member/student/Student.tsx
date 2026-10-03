@@ -34,13 +34,13 @@ export const students: IMember[] = [
   },
   {
     ...constantElements,
-    src: null,
+    src: constantElements.src + "vitoriacosta.jpg",
     name: "Vitória da Silva Costa",
     link: "https://www.linkedin.com/in/vit%C3%B3ria-costa-5b8853239/",
   },
   {
     ...constantElements,
-    src: null,
+    src: constantElements.src + "julianabuono.jpg",
     name: "Juliana Andrade Buono",
     link: "https://www.linkedin.com/in/juliana-andrade-buono-01b88236b/",
   },

@@ -2,9 +2,6 @@ import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Layout from "@theme/Layout";
 import clsx from "clsx";
-import LuizaLabsCollaboratorsSection from "./home/LuizaLabsCollaboratorsSection/LuizaLabsCollaboratorsSection";
-import MembersSection from "./home/MembersSection/MembersSection";
-import OldMembersSectionSection from "./home/OldMembersSection/OldMembersSection";
 import PresentationSection from "./home/PresentationSection/PresentationSection";
 import ResearchGroupsViewer from "./home/ResearchGroupsViewer/ResearchGroupsViewer";
 import SupportSection from "./home/SupportSection/SupportSection";
@@ -40,9 +37,6 @@ export default function Home(): JSX.Element {
         <PresentationSection />
         <SupportSection />
         <ResearchGroupsViewer />
-        <LuizaLabsCollaboratorsSection />
-        <MembersSection />
-        <OldMembersSectionSection />
       </main>
     </Layout>
   );

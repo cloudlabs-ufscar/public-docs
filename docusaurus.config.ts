@@ -34,11 +34,11 @@ const config: Config = {
   },
 
   scripts: [
-      {
-        src: 'https://gc.zgo.at/count.js',
-        async: true,
-        'data-goatcounter': 'https://cloudlabs.goatcounter.com/count'
-      }
+    {
+      src: "https://gc.zgo.at/count.js",
+      async: true,
+      "data-goatcounter": "https://cloudlabs.goatcounter.com/count",
+    },
   ],
 
   presets: [
@@ -85,18 +85,22 @@ const config: Config = {
       },
       items: [
         {
-        type: "docSidebar",
+          type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
           label: "Docs",
-        }, 
+        },
+        {
+          label: "Equipe",
+          to: "/equipe",
+        },
         {
           type: "docSidebar",
           sidebarId: "tutorialSidebar",
           position: "left",
           label: "Blog",
-          href: "https://blog.cloudlabs.ufscar.br/"
-        },           
+          href: "https://blog.cloudlabs.ufscar.br/",
+        },
         // { to: "/blog", label: "Blog", position: "left" },
         {
           href: "https://github.com/cloudlabs-ufscar",

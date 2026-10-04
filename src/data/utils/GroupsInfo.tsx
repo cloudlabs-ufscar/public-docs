@@ -34,20 +34,6 @@ export default class GroupsInfo {
         "Nosso compromisso com a pesquisa em infraestrutura envolve a criação de ambientes eficientes, escaláveis e flexíveis, de forma automatizada, fundamentais para a sustentação de operações críticas em data centers modernos.",
       icon: require("@site/static/img/infra.svg").default,
     },
-    LOAD_BALANCING: {
-      name: GroupsEnum.LOAD_BALANCING,
-      formattedName: "Load Balancing",
-      description:
-        "Buscamos explorar e aplicar técnicas de balanceamento de carga para otimizar a distribuição de tráfego e recursos, visando à utilização eficiente dos recursos disponíveis.",
-      icon: require("@site/static/img/load_balacing.svg").default,
-    },
-    SRE: {
-      name: GroupsEnum.SRE,
-      formattedName: "Site Reliability Engineering (SRE)",
-      description:
-        "Este grupo investiga a vanguarda das práticas de SRE, focando na criação de sistemas robustos, confiáveis e eficientes, que promovam a disponibilidade contínua dos serviços e aplicativos hospedados em nossos data centers.",
-      icon: require("@site/static/img/sre.svg").default,
-    },
   };
 
   static getGroupsData = () => {

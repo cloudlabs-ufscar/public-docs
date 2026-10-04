@@ -65,24 +65,6 @@ export const students: IMember[] = [
   {
     ...constantElements,
     src: null,
-    name: "Nicolas Magno",
-    link: "https://www.linkedin.com/in/nicolas-magno-176b31208/",
-  },
-  {
-    ...constantElements,
-    src: null,
-    name: "Lucas Rodrigues da Silva",
-    link: "https://cloudlabs.ufscar.br/",
-  },
-  {
-    ...constantElements,
-    src: null,
-    name: "Murilo Mantovani",
-    link: "https://www.linkedin.com/in/murilo-oliva-mantovani/",
-  },
-  {
-    ...constantElements,
-    src: null,
     name: "José Mateus Queiroz",
     link: "https://github.com/jmateusq",
   },

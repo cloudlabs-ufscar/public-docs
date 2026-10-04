@@ -12,37 +12,37 @@ export const oldstudents: IMember[] = [
     ...constantElements,
     src: null,
     name: "Sara Ferreira",
-    link: "",
+    link: "https://cloudlabs.ufscar.br/",
   },
   {
     ...constantElements,
     src: null,
     name: "Daniel Kenichi Tiago Tateishi",
-    link: "",
+    link: "https://cloudlabs.ufscar.br/",
   },
   {
     ...constantElements,
     src: null,
     name: "Eric Pereira Queiroz Moreira",
-    link: "",
+    link: "https://cloudlabs.ufscar.br/",
   },
   {
     ...constantElements,
     src: null,
     name: "Gabriel Jesus Dantas",
-    link: "",
+    link: "https://cloudlabs.ufscar.br/",
   },
   {
     ...constantElements,
     src: null,
     name: "Matheus Teixeira Mattioli",
-    link: "",
+    link: "https://cloudlabs.ufscar.br/",
   },
   {
     ...constantElements,
     src: null,
     name: "Miguel Antonio de Oliveira",
-    link: "",
+    link: "https://cloudlabs.ufscar.br/",
   },
   {
     ...constantElements,
@@ -55,6 +55,24 @@ export const oldstudents: IMember[] = [
     src: constantElements.src + "augusto.jpeg",
     name: "Augusto dos Santos Gomes Vaz",
     link: "https://github.com/augustodsgv",
+  },
+  {
+    name: "Alcides Mignoso e Silva",
+    link: "https://www.linkedin.com/in/alcidesmig/",
+    src: "img/collaborator/LLabs/alcides.jpeg",
+    role: MemberRoleEnum.LUIZALABS_COLLABORATOR,
+  },
+  {
+    ...constantElements,
+    src: null,
+    name: "Lucas Rodrigues da Silva",
+    link: "https://cloudlabs.ufscar.br/",
+  },
+  {
+    name: "Hermes Senger",
+    link: "https://www.linkedin.com/in/hermes-senger-a59284/",
+    src: "img/collaborator/ufscar/hermes.gif",
+    role: MemberRoleEnum.UFSCAR_COLLABORATOR,
   },
   {
     ...constantElements,
@@ -110,7 +128,7 @@ export const oldstudents: IMember[] = [
     name: "Daniel Lombardi",
     link: "https://www.linkedin.com/in/daniel-lombardi/",
   },
-   {
+  {
     ...constantElements,
     src: constantElements.src + "gabrieldelucca.jpeg",
     name: "Gabriel de Lucca",

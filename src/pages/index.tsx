@@ -16,14 +16,6 @@ function HomepageHeader() {
         <p className={clsx("hero__subtitle", styles.text)}>
           {siteConfig.tagline}
         </p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/intro"
-          >
-            Acesse nossa documentação
-          </Link>
-        </div>
       </div>
     </header>
   );
@@ -35,8 +27,8 @@ export default function Home(): JSX.Element {
       <HomepageHeader />
       <main className={styles.container}>
         <PresentationSection />
-        <SupportSection />
         <ResearchGroupsViewer />
+        <SupportSection />
       </main>
     </Layout>
   );

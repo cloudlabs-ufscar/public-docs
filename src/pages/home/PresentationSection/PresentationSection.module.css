@@ -1,6 +1,22 @@
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  margin-bottom: 2.5rem;
+}
+
 .description {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  text-align: justify;
+  align-items: center;
+  text-align: center;
+  font-size: 1.1rem;
+}
+
+.objectives {
+  margin-top: 0.5rem;
+}
+
+.objectives .row {
+  margin-top: 0;
 }

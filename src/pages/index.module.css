@@ -7,11 +7,12 @@
   width: 150px;
   height: 150px;
   object-fit: contain;
-  fill: #5b51e2;
+  fill: #302a8c;
 }
 
 .text {
   color: #ffffff;
+  font-size: 2rem;
 }
 
 .container {
@@ -26,6 +27,7 @@
   text-align: center;
   position: relative;
   overflow: hidden;
+  background-color: #302a8c;
 }
 
 @media screen and (max-width: 996px) {

@@ -1,5 +1,6 @@
 import SectionTitle from "@site/src/components/SectionTitle/SectionTitle";
 import React, { FunctionComponent } from "react";
+
 import styles from "./LuizaLabsCollaboratorsSection.module.css";
 
 interface ILuizaLabsCollaboratorsData {
@@ -10,7 +11,7 @@ interface ILuizaLabsCollaboratorsData {
 const LuizaLabsCollaboratorsData: ILuizaLabsCollaboratorsData[] = [
   {
     label: "Diretor",
-    names: ["Christian (Kiko) Robottom Reis"],
+    names: ["Christian Robottom Reis"],
   },
   {
     label: "Líder Técnico",
@@ -46,12 +47,15 @@ const LuizaLabsCollaboratorsSection: FunctionComponent = () => {
   return (
     <div className="container">
       <SectionTitle>Magalu Cloud</SectionTitle>
-      {LuizaLabsCollaboratorsData.map(({ label, names }, index) => (
-        <div className={styles.group} key={index}>
-          <div className={styles.label}>{label}:</div>
-          <div className={styles.name}>{names.join(", ")}</div>
-        </div>
-      ))}
+
+      <div className={styles.card}>
+        {LuizaLabsCollaboratorsData.map(({ label, names }, index) => (
+          <div className={styles.group} key={index}>
+            <div className={styles.label}>{label}:</div>
+            <div className={styles.name}>{names.join(", ")}</div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

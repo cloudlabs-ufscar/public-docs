@@ -7,8 +7,14 @@
   justify-content: center;
   border-radius: 0.64rem;
   background: #efefef;
-  transition: all 500ms ease-in-out;
+  transition:
+    transform 500ms ease-in-out,
+    box-shadow 500ms ease-in-out;
   min-width: 300px;
+}
+
+[data-theme="dark"] .cardBox {
+  background: #3e3d3d;
 }
 
 .cardBox:hover {

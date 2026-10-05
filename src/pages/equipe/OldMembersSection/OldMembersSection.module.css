@@ -1,11 +1,10 @@
-.group{
+.group {
   display: flex;
   gap: 0.5rem;
   align-items: flex-start;
   flex-direction: column;
 }
 
-.label{
+.label {
   font-weight: bold;
 }
-

@@ -52,7 +52,7 @@ export const students: IMember[] = [
   },
   {
     ...constantElements,
-    src: null,
+    src: constantElements.src + "henriquebrito.jpeg",
     name: "Henrique Brito",
     link: "https://www.linkedin.com/in/henrique-brito-647306360/",
   },
@@ -76,7 +76,7 @@ export const students: IMember[] = [
   },
   {
     ...constantElements,
-    src: null,
+    src: constantElements.src + "olivermiyar.jpeg",
     name: "Oliver Miyar Ugarte",
     link: "https://www.linkedin.com/in/olivermiyarugarte/",
   },

@@ -1,18 +1,14 @@
 .list {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
+  align-items: center;
   gap: 1rem;
-  margin: 1rem 0;
+  margin: 0.5rem 0 2rem;
 }
 
-@media (max-width: 500px) {
-  .list {
-    display: flex;
-    overflow-x: scroll;
-    overflow-y: hidden;
-    align-items: center;
-    justify-content: flex-start;
-  }
+.list > * {
+  flex: 0 1 calc(25% - 1rem);
+  max-width: 300px;
+  min-width: 200px;
 }

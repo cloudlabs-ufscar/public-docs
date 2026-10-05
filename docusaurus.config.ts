@@ -49,8 +49,6 @@ const config: Config = {
           sidebarPath: "./sidebars.ts",
           // Please change this to your repo.
           // Remove this to remove the "edit this page" links.
-          editUrl:
-            "https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/",
         },
         blog: {
           showReadingTime: true,
@@ -79,10 +77,12 @@ const config: Config = {
     image: "img/logo.svg",
     navbar: {
       title: "Cloudlabs",
+
       logo: {
         alt: "Cloudlabs Logo",
-        src: "img/logo.svg",
+        src: "img/logonavbar.png",
       },
+
       items: [
         {
           type: "docSidebar",
@@ -90,40 +90,57 @@ const config: Config = {
           position: "left",
           label: "Docs",
         },
+
         {
           label: "Equipe",
           to: "/equipe",
-        },
-        {
-          type: "docSidebar",
-          sidebarId: "tutorialSidebar",
           position: "left",
+        },
+
+        {
           label: "Blog",
           href: "https://blog.cloudlabs.ufscar.br/",
+          position: "left",
+          className: "no-external-icon",
         },
-        // { to: "/blog", label: "Blog", position: "left" },
+
         {
-          href: "https://github.com/cloudlabs-ufscar",
           label: "GitHub",
-          position: "right",
+          href: "https://github.com/cloudlabs-ufscar",
+          position: "left",
+          className: "no-external-icon",
         },
       ],
     },
     footer: {
       style: "dark",
+
       links: [
         {
-          title: "Docs",
+          title: "Navegação",
           items: [
+            {
+              label: "Início",
+              to: "/",
+            },
+            {
+              label: "Equipe",
+              to: "/equipe",
+            },
             {
               label: "Documentação",
               to: "/docs/intro",
             },
           ],
         },
+
         {
-          title: "More",
+          title: "Links",
           items: [
+            {
+              label: "Blog",
+              href: "https://blog.cloudlabs.ufscar.br/",
+            },
             {
               label: "GitHub",
               href: "https://github.com/cloudlabs-ufscar",
@@ -131,11 +148,8 @@ const config: Config = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} DC UFSCar.`,
-    },
-    prism: {
-      theme: prismThemes.github,
-      darkTheme: prismThemes.dracula,
+
+      copyright: `Copyright © ${new Date().getFullYear()} CloudLabs UFSCar.`,
     },
   } satisfies Preset.ThemeConfig,
 };

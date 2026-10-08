@@ -46,7 +46,7 @@ export const students: IMember[] = [
   },
   {
     ...constantElements,
-    src: null,
+    src: constantElements.src + "eduardolemos.jpeg",
     name: "Eduardo Lemos",
     link: "https://www.linkedin.com/in/eduardo-lemos-paschoalini/",
   },

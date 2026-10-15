@@ -92,4 +92,28 @@ export const students: IMember[] = [
     name: "Leonardo Pissolati",
     link: "https://www.linkedin.com/in/leonardo-pissolati-7545b2369/",
   },
+  {
+    ...constantElements,
+    src: null,
+    name: "Davi Militani",
+    link: "https://cloudlabs.ufscar.br/equipe",
+  },
+  {
+    ...constantElements,
+    src: null,
+    name: "Lucas de Araújo Cardoso",
+    link: "https://cloudlabs.ufscar.br/equipe",
+  },
+    {
+    ...constantElements,
+    src: null,
+    name: "Gabriel de Faria Alonso",
+    link: "https://cloudlabs.ufscar.br/equipe",
+  },
+  {
+    ...constantElements,
+    src: null,
+    name: "Luiz Otávio Teixeira Mello",
+    link: "https://cloudlabs.ufscar.br/equipe",
+  },
 ].sort(sortMembers);

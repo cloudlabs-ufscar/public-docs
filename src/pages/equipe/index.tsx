@@ -9,8 +9,8 @@ export default function Equipe() {
     <Layout title="Equipe" description="Conheça a equipe do projeto">
       <PresentationSection />
       <MembersSection />
-      <LuizaLabsCollaboratorsSection />
       <OldMembersSection />
+      <LuizaLabsCollaboratorsSection />
     </Layout>
   );
 }

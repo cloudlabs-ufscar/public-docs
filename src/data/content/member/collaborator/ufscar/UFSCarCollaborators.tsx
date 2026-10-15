@@ -11,7 +11,7 @@ const constantElements = {
 export const UFSCarCollaborators: IMember[] = [
   {
     name: "Hélio Crestana Guardia",
-    link: "https://cloudlabs.ufscar.br/",
+    link: "https://cloudlabs.ufscar.br/equipe",
     src: "img/collaborator/ufscar/heliocrestana.jpeg",
     role: MemberRoleEnum.UFSCAR_COLLABORATOR,
   },

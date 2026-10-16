@@ -96,24 +96,24 @@ export const students: IMember[] = [
     ...constantElements,
     src: null,
     name: "Davi Militani",
-    link: "https://cloudlabs.ufscar.br/equipe",
+    link: "/equipe",
   },
   {
     ...constantElements,
     src: null,
     name: "Lucas de Araújo Cardoso",
-    link: "https://cloudlabs.ufscar.br/equipe",
+    link: "/equipe",
   },
     {
     ...constantElements,
     src: null,
     name: "Gabriel de Faria Alonso",
-    link: "https://cloudlabs.ufscar.br/equipe",
+    link: "/equipe",
   },
   {
     ...constantElements,
     src: null,
     name: "Luiz Otávio Teixeira Mello",
-    link: "https://cloudlabs.ufscar.br/equipe",
+    link: "/equipe",
   },
 ].sort(sortMembers);

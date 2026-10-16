@@ -8,7 +8,7 @@ const config: Config = {
     "Pesquisa e desenvolvimento em tecnologias para data centers utilizando virtualização",
   // favicon: "img/favicon.ico",
   favicon:
-    "https://magalu.cloud/wp-content/uploads/2023/12/Logo-coloridoAssets-1.jpg",
+    "img/logo_guia.png",
 
   // Set the production url of your site here
   url: "https://cloudlabs.ufscar.br",

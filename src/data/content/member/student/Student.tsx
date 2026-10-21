@@ -106,9 +106,9 @@ export const students: IMember[] = [
   },
     {
     ...constantElements,
-    src: null,
-    name: "Gabriel de Faria Alonso",
-    link: "/equipe",
+    src: constantElements.src + "gabrielalonso.jpeg",
+    name: "Gabriel Alonso",
+    link: "https://www.linkedin.com/in/gabrieldefariaalonso/",
   },
   {
     ...constantElements,
